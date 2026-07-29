@@ -6,7 +6,7 @@ namespace SistemaGestionAcademica
     class Program
     {
         // Límite máximo de estudiantes
-        const int MAX_ESTUDIANTES = 50; //[cite: 1]
+        const int MAX_ESTUDIANTES = 50; 
         static int totalEstudiantes = 0;
 
         // Arreglos principales para guardar la información de los estudiantes
@@ -31,7 +31,6 @@ namespace SistemaGestionAcademica
             do
             {
                 Console.Clear();
-                Console.WriteLine("==================================================");
                 Console.WriteLine("   SISTEMA DE GESTIÓN ACADÉMICA INTELIGENTE UNICAES");
                 Console.WriteLine("==================================================");
                 Console.WriteLine("1. Registrar Estudiante");
@@ -69,9 +68,7 @@ namespace SistemaGestionAcademica
             } while (opcion != 9);
         }
 
-        // ==========================================
         // 1. REGISTRAR ESTUDIANTE
-        // ==========================================
         static void RegistrarEstudiante()
         {
             Console.Clear();
@@ -85,12 +82,12 @@ namespace SistemaGestionAcademica
 
             int i = totalEstudiantes;
 
-            // Datos del estudiante con validaciones estrictas
+            // Datos del estudiante con validaciones 
             nombres[i] = LeerSoloTexto("Ingrese el nombre completo (solo letras): ");
             generos[i] = LeerGeneroValido();
             carnets[i] = LeerCarnetValido();
 
-            // Selección de Facultad y Carrera mediante menú numérico
+            // Selección de Facultad y Carrera 
             SeleccionarFacultadyCarrera(i);
 
             // Nombre de la Materia
@@ -99,11 +96,11 @@ namespace SistemaGestionAcademica
             double sumaNotasMaterias = 0;
             double sumaAsistencias = 0;
 
-            for (int p = 0; p < 3; p++) //[cite: 1]
+            for (int p = 0; p < 3; p++) 
             {
                 Console.WriteLine($"\n--- PERÍODO {p + 1} ---");
 
-                // Nota Examen Parcial (50%)
+                // Nota Parcial (50%)
                 double parcial = LeerDoubleValido("Ingrese nota del Examen Parcial (0-10): ", 0, 10);
 
                 // Actividades Evaluadas (50%)
@@ -146,16 +143,14 @@ namespace SistemaGestionAcademica
             promediosFinales[i] = sumaNotasMaterias / 3.0;
             asistenciasPromedio[i] = sumaAsistencias / 3.0;
 
-            // Criterio de Aprobación: Nota >= 6.0 y Asistencia >= 75%
+            // Aprobación: Nota >= 6.0 y Asistencia >= 75%
             aprobados[i] = (promediosFinales[i] >= 6.0) && (asistenciasPromedio[i] >= 75.0); //[cite: 1]
 
             totalEstudiantes++;
             Console.WriteLine("\n¡Estudiante registrado con éxito!");
         }
 
-        // ==========================================
         // 2. MOSTRAR ESTUDIANTES
-        // ==========================================
         static void MostrarEstudiantes()
         {
             Console.Clear();
@@ -206,9 +201,7 @@ namespace SistemaGestionAcademica
             }
         }
 
-        // ==========================================
         // 3. BUSCAR ESTUDIANTE (POR CARNET)
-        // ==========================================
         static void BuscarEstudiante()
         {
             Console.Clear();
@@ -234,9 +227,7 @@ namespace SistemaGestionAcademica
             }
         }
 
-        // ==========================================
         // 4. MODIFICAR NOTAS Y ASISTENCIAS
-        // ==========================================
         static void ModificarNotasAsistencias()
         {
             Console.Clear();
@@ -272,9 +263,7 @@ namespace SistemaGestionAcademica
             Console.WriteLine("\n¡Notas y asistencias actualizadas correctamente!");
         }
 
-        // ==========================================
         // 5. ELIMINAR ESTUDIANTE
-        // ==========================================
         static void EliminarEstudiante()
         {
             Console.Clear();
@@ -312,9 +301,7 @@ namespace SistemaGestionAcademica
             Console.WriteLine("\n¡Estudiante eliminado con éxito!");
         }
 
-        // ==========================================
         // 6. ESTADÍSTICAS GENERALES
-        // ==========================================
         static void EstadisticasGenerales()
         {
             Console.Clear();
@@ -349,9 +336,7 @@ namespace SistemaGestionAcademica
             Console.WriteLine($"4. Porcentaje de Aprobados: {porcAprobados:F1}% | Porcentaje de Reprobados: {porcReprobados:F1}%");
         }
 
-        // ==========================================
         // 7. TOP 3 ESTUDIANTES
-        // ==========================================
         static void Top3Estudiantes()
         {
             Console.Clear();
@@ -387,9 +372,7 @@ namespace SistemaGestionAcademica
             }
         }
 
-        // ==========================================
         // 8. REPORTES
-        // ==========================================
         static void Reportes()
         {
             Console.Clear();
@@ -426,9 +409,7 @@ namespace SistemaGestionAcademica
             Console.WriteLine($"   - Peor Estudiante: {nombres[posPeor]} (Nota: {promediosFinales[posPeor]:F2})");
         }
 
-        // ==========================================
         // FUNCIONES DE SELECCIÓN DE FACULTAD Y CARRERA
-        // ==========================================
 
         static void SeleccionarFacultadyCarrera(int i)
         {
@@ -512,9 +493,7 @@ namespace SistemaGestionAcademica
             return -1;
         }
 
-        // ==========================================
-        // FUNCIONES AUXILIARES DE VALIDACIÓN RIGUROSA
-        // ==========================================
+        // FUNCIONES DE VALIDACIÓN 
 
         // Solo letras y espacios
         static string LeerSoloTexto(string mensaje)
@@ -523,7 +502,7 @@ namespace SistemaGestionAcademica
             do
             {
                 Console.Write(mensaje);
-                entrada = Console.ReadLine()?.Trim();
+                entrada = Console.ReadLine()?.Trim() ?? "";
 
                 if (string.IsNullOrEmpty(entrada))
                 {
@@ -539,14 +518,14 @@ namespace SistemaGestionAcademica
             return entrada;
         }
 
-        // Texto que admite letras y números (ej. Nombres de materia)
+        // Texto que admite letras y números 
         static string LeerTextoAlfanumerico(string mensaje)
         {
             string entrada;
             do
             {
                 Console.Write(mensaje);
-                entrada = Console.ReadLine()?.Trim();
+                entrada = Console.ReadLine()?.Trim() ??"";
 
                 if (string.IsNullOrEmpty(entrada))
                 {
@@ -562,14 +541,14 @@ namespace SistemaGestionAcademica
             return entrada;
         }
 
-        // Formato obligatorio: 4 números + 2 letras (Ejemplo: 2025RM)
+        // Carnet: 4 números y 2 letras 
         static string LeerCarnetValido()
         {
             string carnet;
             do
             {
                 Console.Write("Ingrese el carnet (Ejemplo: 2025RM): ");
-                carnet = Console.ReadLine()?.Trim().ToUpper();
+                carnet = Console.ReadLine()?.Trim().ToUpper() ??"";
 
                 if (string.IsNullOrEmpty(carnet))
                 {
@@ -592,7 +571,7 @@ namespace SistemaGestionAcademica
             do
             {
                 Console.Write("Ingrese Género (M/F): "); //[cite: 1]
-                gen = Console.ReadLine()?.Trim().ToUpper();
+                gen = Console.ReadLine()?.Trim().ToUpper() ?? "";
 
                 if (gen != "M" && gen != "F")
                 {
@@ -610,7 +589,7 @@ namespace SistemaGestionAcademica
             while (true)
             {
                 Console.Write(mensaje);
-                string entrada = Console.ReadLine()?.Trim();
+                string entrada = Console.ReadLine()?.Trim() ??"";
 
                 if (int.TryParse(entrada, out num) && num >= min && num <= max)
                     return num;
@@ -626,7 +605,7 @@ namespace SistemaGestionAcademica
             while (true)
             {
                 Console.Write(mensaje);
-                string entrada = Console.ReadLine()?.Trim();
+                string entrada = Console.ReadLine()?.Trim() ??"";
 
                 if (double.TryParse(entrada, out num) && num >= min && num <= max)
                     return num;
